@@ -1,7 +1,7 @@
 body{
     margin: 0;
     font-family:sans-serif;
-    color: hsla(192deg, 0%, 24%, 1.0);
+    color: hsla(192deg, 0%, 25%, 1.0);
     background-color: hsla(192deg, 0%, 96%, 1.0);
 }
 
@@ -16,14 +16,31 @@ body{
     align-items: center;
     background-color: hsla(192deg, 0%, 92%, 1.0);
     box-shadow: 1px 1px 20px hsla(192deg, 0%, 0%, 0.2);
+    position: fixed;
+    width: 100%;
+    z-index: 900;
+    top: 0;
+    transform: translateZ(0);
 }
 
 .addBtn{
     position: fixed;
+    z-index: 1000;
     color: hsla(192deg, 80%, 45%, 1.0);
-    top: 1rem;
-    right: 2rem;
+    transform: translateY(0.1vh) translateX(90vw);
+    transition: all 0.25s ease-out;
 }
+
+.addBtnHide{
+    transform: translateY(0.1vh) translateX(105vw);
+    transition: all 0.25s ease-in;
+}
+
+.listPage{
+    transform: translateX(0vw) translateY(8vh);
+    transition: all 0.35s ease-out;
+}
+
 .listCtn{
     background-color: hsla(192deg, 0%, 100%, 1.0);
     box-shadow: 1px 6px 10px hsla(192deg, 0%, 0%, 0.025);
@@ -76,3 +93,98 @@ body{
     border-radius: 50px;
 }
 
+
+/****** AddPage ******/
+
+.addPage{
+    transform: translateX(0vw) translateY(-10.4vh);
+    transition: all 0.35s ease-out;
+    /* z-index: -100; */
+}
+
+.backBtn{
+    position: fixed;
+    z-index: 1000;
+    color: hsla(192deg, 80%, 45%, 1.0);
+    transform: translateY(-14.5vh) translateX(-5vw);
+    transition: all 0.25s ease-out;
+}
+
+.backBtnShow{
+    transform: translateY(-14.5vh) translateX(5vw);
+    transition: all 0.25s ease-in;
+}
+
+.inputHeader{
+    background-color: hsla(192deg, 80%, 45%, 1);
+    color: white;
+    font-size: 2rem;
+    height: 25vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3rem;
+}
+
+.msg{
+    transform: translateY(-9vh);
+    transition: all 0.5s ease-out;
+}
+
+.msgVisible{
+    transform: translateY(0);    
+    transition: all 0.5s ease-out;
+}
+
+.inputCtn{
+    margin: 1rem 1rem 0 1.5rem;
+    display: grid; 
+}
+
+.inputTitle
+{
+    color: hsla(192deg, 80%, 45%, 1.0);
+    font-size: 1.25rem;
+}
+
+.input{
+    margin: 0.5rem 0 1rem 0;
+    height: 1.25rem;
+    width: 85vw;
+    font-size: 1rem;
+    background-color: hsla(192deg, 0%, 96%, 1.0);
+    color: hsla(192deg, 0%, 25%, 1.0);
+    border: 0px solid white;
+    border-bottom: 2px solid hsla(192deg, 0%, 75%, 1.0);
+    transition: all 0.75s ease-out;
+}
+
+.input:focus{
+    outline: none;
+    border-bottom: 2px solid hsla(192deg, 80%, 45%, 1.0);
+    transition: all 0.75s ease-out;
+}
+
+.saveBtn{
+    margin: 1rem 1rem 0 1.45rem;
+    padding: 0.3rem 1rem;
+    font-size: 1rem;
+    background-color: hsla(192deg, 80%, 45%, 1.0);
+    color: white;
+    border: 0px solid white;
+    border-radius: 4px;
+}
+
+.disappear{
+    display: none;
+}
+
+.hide{
+    transform: translateX(-105vw) translateY(8vh);
+    transition: all 0.35s ease-out;
+}
+
+.hideAdd{
+    transform: translateX(105vw) translateY(-10.4vh);
+    transition: all 0.35s ease-out;
+}

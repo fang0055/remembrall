@@ -12,8 +12,8 @@
     <body>
         <div class="appTitle">Rememberall</div>
 
+        <i class="fas fa-plus addBtn"></i>
         <div class="listPage">
-            <i class="fas fa-plus addBtn"></i>
             <div class="listCtn">
                 <div class="deleteCtn">
                     <i class="far fa-trash-alt deleteBtn"></i>
@@ -27,14 +27,19 @@
                     </div>                
                 <div class="rmbDate">JAN 18</div>
                 <div class="rmbText">Read study meterials</div></div>
-            <div class="listCtn"></div>
         </div>
 
-        <div class="addPage">
-            <div class="backBtn"></div>
-            <div class="inputTitle"></div>
+        <i class="fas fa-arrow-left backBtn"></i>
+
+        <div class="addPage hideAdd">
+            <div class="inputHeader">
+                <span class="msg">What's the plan?</span>
+            </div>
+            <div class="inputCtn">
+                <span class="inputTitle">Remind</span>        
+                <input class="input" type="text"></div>
             <div class="setDate"></div>
-            <div class="confirmBtn"></div>
+            <button class="saveBtn">Save</button>
         </div>
 
         <script type="text/javascript" src="cordova.js"></script>
