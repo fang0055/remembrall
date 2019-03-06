@@ -3,6 +3,7 @@ body{
     font-family:sans-serif;
     color: hsla(192deg, 0%, 25%, 1.0);
     background-color: hsla(192deg, 0%, 96%, 1.0);
+    overflow-x: hidden;
 }
 
 .appTitle{
@@ -25,14 +26,15 @@ body{
 
 .addBtn{
     position: fixed;
+    top: 2.8vh;
     z-index: 1000;
     color: hsla(192deg, 80%, 45%, 1.0);
-    transform: translateY(0.1vh) translateX(90vw);
+    transform: translateY(0vh) translateX(90vw);
     transition: all 0.25s ease-out;
 }
 
 .addBtnHide{
-    transform: translateY(0.1vh) translateX(105vw);
+    transform: translateY(0vh) translateX(105vw);
     transition: all 0.25s ease-in;
 }
 
@@ -88,7 +90,7 @@ body{
     transition: all 0.35s ease-out;
 }
 
-.rmbDate{
+.rmdDate{
     color:hsla(192deg, 80%, 45%, 1.0);
     border-radius: 50px;
 }
@@ -97,21 +99,24 @@ body{
 /****** AddPage ******/
 
 .addPage{
-    transform: translateX(0vw) translateY(-10.4vh);
+    position: fixed;
+    top: 8vh;
+    transform: translateX(0vw) translateY(0vh);
     transition: all 0.35s ease-out;
     /* z-index: -100; */
 }
 
 .backBtn{
     position: fixed;
+    top: 2.8vh;
     z-index: 1000;
     color: hsla(192deg, 80%, 45%, 1.0);
-    transform: translateY(-14.5vh) translateX(-5vw);
+    transform: translateY(0vh) translateX(-5vw);
     transition: all 0.25s ease-out;
 }
 
 .backBtnShow{
-    transform: translateY(-14.5vh) translateX(5vw);
+    transform: translateY(0vh) translateX(5vw);
     transition: all 0.25s ease-in;
 }
 
@@ -126,8 +131,17 @@ body{
     margin-bottom: 3rem;
 }
 
+.colorHider{
+    width: 100%;
+    height: 9vh;
+    background-color:hsla(192deg, 80%, 45%, 1.0);
+    position: fixed;
+    top: 0vh;
+    z-index: 800;
+}
+
 .msg{
-    transform: translateY(-9vh);
+    transform: translateY(-7vh);
     transition: all 0.5s ease-out;
 }
 
@@ -147,11 +161,17 @@ body{
     font-size: 1.25rem;
 }
 
+.dateTitle
+{
+    margin-top: 1.75rem;
+}
+
 .input{
     margin: 0.5rem 0 1rem 0;
     height: 1.25rem;
     width: 85vw;
     font-size: 1rem;
+    font-family: sans-serif;
     background-color: hsla(192deg, 0%, 96%, 1.0);
     color: hsla(192deg, 0%, 25%, 1.0);
     border: 0px solid white;
@@ -166,7 +186,7 @@ body{
 }
 
 .saveBtn{
-    margin: 1rem 1rem 0 1.45rem;
+    margin: 2rem 1rem 0 1.45rem;
     padding: 0.3rem 1rem;
     font-size: 1rem;
     background-color: hsla(192deg, 80%, 45%, 1.0);
@@ -185,6 +205,6 @@ body{
 }
 
 .hideAdd{
-    transform: translateX(105vw) translateY(-10.4vh);
+    transform: translateX(105vw) translateY(0vh);
     transition: all 0.35s ease-out;
 }
