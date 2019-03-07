@@ -72,7 +72,7 @@ body{
 
 .hideItem{
     transform: scale(0.1);
-    transition: all 0.35s ease-out;
+    transition: all 0.35s ease-in;
 }
 
 .deleteCtn{
@@ -101,7 +101,7 @@ body{
 
 .deleteCtnHide{
     transform: rotate(-360deg) scale(0.1);
-    transition: all 0.35s ease-out;
+    transition: all 0.35s ease-in;
 }
 
 .deleteBtn{

@@ -8,24 +8,9 @@ let app = {
         "Ready to note?"
     ],
 
-    // inTenSec: (new Date()).setSeconds((new Date().getSeconds()+10)),
-
-    reminders: [
-        // {
-        //     id: 1,
-        //     title: "TEST",
-        //     text: "Can you get me?",
-        //     at: new Date().setSeconds((new Date().getSeconds()+20)),
-        //     data: {prop: "prop value"}
-        // }
-    ],
+    reminders: [],
 
     init: function () {
-        // document.querySelector(".deleteCtn").addEventListener("click", app.confirmDelete);\
-        // cordova.plugins.notification.local.schedule(reminders[0]);
-        // console.log(app.reminders[0]);
-        // app.addNote();
-        // cordova.plugins.notification.local.clearAll();
         cordova.plugins.notification.local.cancelAll();
         document.querySelector(".addBtn").addEventListener("click", app.toggleBtn);
         document.querySelector(".backBtn").addEventListener("click", app.toggleBtn);
@@ -33,11 +18,6 @@ let app = {
         setInterval(() => {
             app.changeMessages();
         }, 5000);
-    },
-
-    confirmDelete: function () {
-        // document.querySelector(".deleteBtn").classList.add("deleteBtnCfm");
-        // document.querySelector(".deleteCtn").classList.add("deleteCtnCfm");
     },
 
     toggleBtn: function () {
@@ -70,41 +50,26 @@ let app = {
             month: 'short',
             day: '2-digit'
         });
+
         let reminder = {
             id: Date.now(),
             title: "Rememberall",
             text: text,
-            at: new Date(luxon.DateTime.fromISO(date).minus({
+            at: new Date(luxon.DateTime.fromISO(date+"T08:00:00").minus({
                 days: 7
             })),
             data: dateText,
-            // date: dateCompare
         }
-        // console.log(reminder);
         cordova.plugins.notification.local.schedule(reminder);
         app.reminders.push(reminder);
-        console.log(app.reminders);
-
-        // let dateCompare = luxon.DateTime.fromISO(dateText);
-        // console.log(dateCompare);
 
         let i = app.reminders.length;
-        console.log(i);
-        console.log(new Date(app.reminders[i-1].data));
-        // console.log(app.reminders[i-1].at);
-
-        if(new Date(app.reminders[i-1].data) < new Date(app.reminders[i-2].data)){
-            console.log("Helllllllo!!!");
+        if(i>1 && new Date(app.reminders[i-1].data) < new Date(app.reminders[i-2].data)){
             app.reminders.sort( (a, b)=>{
-                return new Date(a.data) - new Date(b.data)
+                return new Date(a.data) - new Date(b.data);
             });
-            console.log(app.reminders);
         }
 
-        cordova.plugins.notification.local.getScheduled(items=>{
-            items
-            console.log(items);
-        });
         document.querySelector(".listPage").innerHTML = "";
         app.reminders.forEach(item => {
             let documentFragment = new DocumentFragment();
@@ -122,6 +87,7 @@ let app = {
             deleteBtn.className = "far fa-trash-alt deleteBtn";
             rmdDate.className = "rmdDate";
             rmdText.className = "rmdText";
+            deleteCtn.setAttribute("data-id", item.id);
 
             deleteCtn.addEventListener("click", app.deleteIcon);
 
@@ -132,11 +98,7 @@ let app = {
             documentFragment.appendChild(listCtn);
             document.querySelector(".listPage").appendChild(documentFragment);
         });
-        // console.log(reminders);
         app.toggleBtn();
-        // cordova.plugins.notification.local.getScheduled(reminders => {
-        //     console.log(reminders);});
-        // setTimeout(app.createListPage, 250);
     },
 
     deleteIcon: function(ev){
@@ -157,6 +119,13 @@ let app = {
             document.querySelector(".deleteCtnRed").classList.remove("deleteCtnRed");
             document.querySelector(".deleteBtnWhite").classList.remove("deleteBtnWhite");
         } else{
+            let id = document.querySelector(".deleteCtnRed").getAttribute("data-id");
+            cordova.plugins.notification.local.cancel(id);
+            console.log(id);
+            console.log("From here!!!!!!!!!!");
+            cordova.plugins.notification.local.getScheduled(items =>{
+                console.log(items);
+            });
             document.querySelector(".deleteCtnRed").classList.add("deleteCtnCfm");
             document.querySelector(".deleteCtnRed").parentElement.classList.add("removeItem");
             setTimeout( ()=>{
@@ -166,6 +135,10 @@ let app = {
             setTimeout( ()=>{
                 document.querySelector(".listPage").removeChild(document.querySelector(".removeItem"));
             },850);
+
+            let i = app.reminders.findIndex(item => item.id == id );
+            app.reminders.splice(i,1);
+            console.log(app.reminders);
         }
     }
 
