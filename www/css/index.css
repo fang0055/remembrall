@@ -2,7 +2,7 @@ body{
     margin: 0;
     font-family:sans-serif;
     color: hsla(192, 0%, 25%, 1.0);
-    background-color: hsla(192, 0%, 96%, 1.0);
+    background-color: #f4f4f4;
     overflow-x: hidden;
 }
 
