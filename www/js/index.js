@@ -17,7 +17,7 @@ let app = {
         document.querySelector(".saveBtn").addEventListener("click", app.addReminder);
         setInterval(() => {
             app.changeMessages();
-        }, 5000);
+        }, 4000);
         app.ready();
     },
 
@@ -30,6 +30,14 @@ let app = {
             } else{
                 document.querySelector(".hint").classList.remove("disappear");
             }
+
+            cordova.plugins.notification.local.on("click", function (item) {
+                let id = item.id;
+                document.querySelector(`[data-id = '${id}']`).parentElement.classList.add("listCtnHighlight");
+                setTimeout( ()=>{
+                    document.querySelector(`[data-id = '${id}']`).parentElement.classList.remove("listCtnHighlight");
+                }, 2000);
+            });
         });
     },
 
@@ -78,7 +86,7 @@ let app = {
                 at: new Date(luxon.DateTime.fromISO(date+"T08:00:00").minus({
                     days: 7
                 })),
-                data: dateText,
+                data: dateText
             }
             cordova.plugins.notification.local.schedule(reminder);
             app.reminders.push(reminder);
@@ -133,7 +141,6 @@ let app = {
     },
 
     deleteIcon: function(ev){
-        console.log(ev.currentTarget);
         ev.currentTarget.classList.add("deleteCtnRed");
         document.querySelector(".deleteCtnRed i").classList.add("deleteBtnWhite");
 
@@ -170,40 +177,6 @@ let app = {
             },850);
         }
     }
-
-    //   createListPage: function(){
-    //     cordova.plugins.notification.local.getScheduled(reminders => {
-    //         console.log(reminders);
-    //         document.querySelector(".listPage").innerHTML = "";
-    //         reminders.forEach(reminder => {
-    //             let documentFragment = new DocumentFragment();
-    //             let listCtn = document.createElement("div");
-    //             let deleteCtn = document.createElement("div");
-    //             let deleteBtn = document.createElement("i");
-    //             let rmdDate = document.createElement("div");
-    //             let rmdText = document.createElement("div");
-
-    //             rmdDate.textContent = reminder.data.date.toUpperCase();
-    //             rmdText.textContent = reminder.text;
-
-    //             listCtn.className = "listCtn";
-    //             deleteCtn.className = "deleteCtn";
-    //             deleteBtn.className = "far fa-trash-alt deleteBtn";
-    //             rmdDate.className = "rmdDate";
-    //             rmdText.className = "rmdText";
-
-    //             listCtn.appendChild(deleteCtn);
-    //             listCtn.appendChild(rmdDate);
-    //             listCtn.appendChild(rmdText);
-    //             deleteCtn.appendChild(deleteBtn);
-    //             documentFragment.appendChild(listCtn);
-    //             document.querySelector(".listPage").appendChild(documentFragment);
-    //         });
-
-    //         app.toggleBtn();
-
-    //     });
-    //   }
 }
 
 if ("cordova" in window) {
